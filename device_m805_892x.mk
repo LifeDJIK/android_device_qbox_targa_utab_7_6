@@ -8,13 +8,8 @@ $(call inherit-product-if-exists, vendor/unknown/m805_892x/m805_892x-vendor.mk)
 DEVICE_PACKAGE_OVERLAYS += device/unknown/m805_892x/overlay
 
 LOCAL_PATH := device/unknown/m805_892x
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
-else
-	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
 
-PRODUCT_COPY_FILES += $(LOCAL_KERNEL):kernel
+PRODUCT_COPY_FILES += $(TARGET_PREBUILT_KERNEL):kernel
 
 $(call inherit-product, build/target/product/full.mk)
 
