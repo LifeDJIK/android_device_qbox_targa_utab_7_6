@@ -9,7 +9,8 @@ DEVICE_PACKAGE_OVERLAYS += device/unknown/m805_892x/overlay
 
 LOCAL_PATH := device/unknown/m805_892x
 
-PRODUCT_COPY_FILES += $(TARGET_PREBUILT_KERNEL):kernel
+# LifeDJIK: Temportary fix to copy prebuilt kernel from non-standard location.
+PRODUCT_COPY_FILES += kernel/unknown/m805_892x/prebuilt:kernel
 
 $(call inherit-product, build/target/product/full.mk)
 
