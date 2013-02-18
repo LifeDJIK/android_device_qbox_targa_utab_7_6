@@ -22,5 +22,5 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_NAME := full_m805_892x
 PRODUCT_DEVICE := m805_892x
 
-PRODUCT_PROPERTY_OVERRIDES := \
-    persist.sys.usb.config=mass_storage,adb
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
+    persist.sys.usb.config=mass_storage
