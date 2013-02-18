@@ -1,5 +1,5 @@
-on init-start
-    # XXX: MTD kernel modules should be loaded before early init
+# LifeDJIK: Loading modules needed to use MTD, NAND & so on.
+on early-init
     insmod /lib/modules/tcc_nand.ko
     insmod /lib/modules/tcc_mtd.ko
     insmod /lib/modules/tcc_ndd.ko
