@@ -13,6 +13,6 @@ $(call inherit-product, device/unknown/m805_892x/device_m805_892x.mk)
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := m805_892x
 PRODUCT_NAME := cm_m805_892x
-PRODUCT_BRAND := unknown
-PRODUCT_MODEL := m805_892x
+PRODUCT_BRAND := Android
+PRODUCT_MODEL := Targa uTab 7.6
 PRODUCT_MANUFACTURER := unknown
