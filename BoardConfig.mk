@@ -12,7 +12,7 @@ BOARD_SKIP_ANDROID_DOC_BUILD := true
 USE_CAMERA_STUB := true
 
 # inherit from the proprietary version
--include vendor/unknown/m805_892x/BoardConfigVendor.mk
+-include vendor/targa/utab_7.6/BoardConfigVendor.mk
 
 TARGET_NO_BOOTLOADER := true
 TARGET_BOARD_PLATFORM := unknown
@@ -40,7 +40,7 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x12c00000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x3fe00000
 BOARD_FLASH_BLOCK_SIZE := 1048576
 
-TARGET_PREBUILT_KERNEL := device/unknown/m805_892x/kernel
+TARGET_PREBUILT_KERNEL := device/targa/utab_7.6/kernel
 
 BOARD_HAS_NO_SELECT_BUTTON := true
 
