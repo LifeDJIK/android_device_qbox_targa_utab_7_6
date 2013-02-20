@@ -4,16 +4,14 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_ARCH_VARIANT_CPU := cortex-a5
+ARCH_ARM_HAVE_NEON := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
 USE_CAMERA_STUB := true
 
-# inherit from the proprietary version
--include vendor/targa/utab_7.6/BoardConfigVendor.mk
-
 TARGET_NO_BOOTLOADER := true
+TARGET_PROVIDES_INIT_TARGET_RC := true
 TARGET_BOARD_PLATFORM := unknown
-TARGET_CPU_ABI := armeabi
 TARGET_BOOTLOADER_BOARD_NAME := m805_892x
 
 BOARD_KERNEL_CMDLINE := console=ttyTCC0,115200n8 androidboot.console=ttyTCC0
@@ -41,5 +39,6 @@ TARGET_PREBUILT_KERNEL := device/targa/utab_7_6/kernel
 
 BOARD_HAS_NO_SELECT_BUTTON := true
 
-# Use this flag if the board has a ext4 partition larger than 2gb
-#BOARD_HAS_LARGE_FILESYSTEM := true
+BOARD_EGL_CFG := device/samsung/galaxys2-common/configs/egl.cfg
+
+BOARD_USES_HWCOMPOSER := true
