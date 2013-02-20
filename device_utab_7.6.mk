@@ -23,4 +23,5 @@ PRODUCT_NAME := full_m805_892x
 PRODUCT_DEVICE := m805_892x
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
-    persist.sys.usb.config=mass_storage
+    persist.sys.usb.config=mass_storage \
+    ro.adb.secure=0
