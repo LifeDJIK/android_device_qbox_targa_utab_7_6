@@ -40,5 +40,6 @@ TARGET_PREBUILT_KERNEL := device/targa/utab_7_6/kernel
 BOARD_HAS_NO_SELECT_BUTTON := true
 
 BOARD_EGL_CFG := device/samsung/galaxys2-common/configs/egl.cfg
+USE_OPENGL_RENDERER := true
 
 BOARD_USES_HWCOMPOSER := true
