@@ -8,7 +8,7 @@ PRODUCT_RELEASE_NAME := m805_892x
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inherit device configuration
-$(call inherit-product, device/unknown/m805_892x/device_m805_892x.mk)
+$(call inherit-product, device/targa/utab_7.6/device_utab_7.6.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := m805_892x
