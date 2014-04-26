@@ -19,27 +19,27 @@ BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 4096
 
 # LifeDJIK: /proc/mtd from my device
-#dev:    size   erasesize  name
-#mtd0: 00a00000 00100000 "boot"
-#mtd1: 00500000 00100000 "kpanic"
-#mtd2: 12c00000 00100000 "system"
-#mtd3: 00400000 00100000 "splash"
-#mtd4: 09600000 00100000 "cache"
-#mtd5: 3fe00000 00100000 "userdata"
-#mtd6: 00a00000 00100000 "recovery"
-#mtd7: 00200000 00100000 "misc"
-#mtd8: 00200000 00100000 "tcc"
+# dev:    size   erasesize  name
+# mtd0: 00a00000 00100000 "boot"
+# mtd1: 00500000 00100000 "kpanic"
+# mtd2: 12c00000 00100000 "system"
+# mtd3: 00400000 00100000 "splash"
+# mtd4: 09600000 00100000 "cache"
+# mtd5: 3fe00000 00100000 "userdata"
+# mtd6: 00a00000 00100000 "recovery"
+# mtd7: 00200000 00100000 "misc"
+# mtd8: 00200000 00100000 "tcc"
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00a00000
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00a00000
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x12c00000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x3fe00000
 BOARD_FLASH_BLOCK_SIZE := 1048576
 
-TARGET_PREBUILT_KERNEL := device/targa/utab_7_6/kernel
+TARGET_PREBUILT_KERNEL := device/qbox/targa_utab_7_6/kernel
 
 BOARD_HAS_NO_SELECT_BUTTON := true
 
-BOARD_EGL_CFG := vendor/targa/utab_7_6/system/lib/egl/egl.cfg
+BOARD_EGL_CFG := vendor/qbox/targa_utab_7_6/system/lib/egl/egl.cfg
 BOARD_EGL_NEEDS_LEGACY_FB := true
 USE_OPENGL_RENDERER := true
 
