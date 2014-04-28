@@ -1,0 +1,27 @@
+on early-init
+# LifeDJIK: Loading modules needed to use MTD, NAND & so on.
+    insmod /lib/modules/tcc_nand.ko
+    insmod /lib/modules/tcc_mtd.ko
+    insmod /lib/modules/tcc_ndd.ko
+# LifeDJIK: Loading USB modules.
+    insmod /lib/modules/ehci-hcd.ko
+    insmod /lib/modules/ohci-hcd.ko
+    insmod /lib/modules/ufsd.ko
+# LifeDJIK: Making mountpoints.
+    mkdir /mnt/sdcard 0000 system system
+    mkdir /mnt/internal 0000 system system
+    mkdir /mnt/usb_sda1 0000 system system
+    mkdir /mnt/usb_sdb1 0000 system system
+    # for backwards compatibility
+    symlink /mnt/sdcard /sdcard
+    symlink /mnt/internal /nand 
+
+on boot
+    mount debugfs /sys/kernel/debug /sys/kernel/debug
+    setprop ro.crypto.keyfile.userdata /dev/block/mtdblock5
+
+service setup_fs /system/bin/setup_fs /dev/block/mtdblock4 /dev/block/mtdblock5
+    class core
+    user root
+    group root
+    oneshot

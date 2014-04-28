@@ -11,7 +11,7 @@ USE_CAMERA_STUB := true
 
 TARGET_NO_BOOTLOADER := true
 TARGET_PROVIDES_INIT_TARGET_RC := true
-TARGET_BOARD_PLATFORM := unknown
+TARGET_BOARD_PLATFORM := tcc892x
 TARGET_BOOTLOADER_BOARD_NAME := m805_892x
 
 BOARD_KERNEL_CMDLINE := console=ttyTCC0,115200n8 androidboot.console=ttyTCC0
@@ -36,6 +36,8 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x3fe00000
 BOARD_FLASH_BLOCK_SIZE := 1048576
 
 TARGET_PREBUILT_KERNEL := device/qbox/targa_utab_7_6/kernel
+#TARGET_KERNEL_SOURCE := kernel/qbox/targa_utab_7_6
+#TARGET_KERNEL_CONFIG := targa_utab_7_6_defconfig
 
 BOARD_HAS_NO_SELECT_BUTTON := true
 
@@ -44,3 +46,23 @@ BOARD_EGL_NEEDS_LEGACY_FB := true
 USE_OPENGL_RENDERER := true
 
 BOARD_USES_HWCOMPOSER := true
+
+# Mass storage
+COMMON_GLOBAL_CFLAGS += -DCUSTOM_LUN_FILE=\"/sys/class/android_usb/android0/f_mass_storage/lun%d/file\"
+
+# NOT VERIFIED -- if it actually works
+#BOARD_USES_ALSA_AUDIO := true
+#BOARD_USE_TINYALSA_AUDIO := true
+#COMMON_GLOBAL_CFLAGS += -DICS_AUDIO_BLOB
+
+#~ BOARD_HAVE_GPS := true
+
+#~ BOARD_WPA_SUPPLICANT_DRIVER := WEXT
+#~ WPA_SUPPLICANT_VERSION  := VER_0_8_X
+#~ WIFI_EXT_MODULE_NAME := wlan
+#~ WIFI_EXT_MODULE_PATH := "/system/lib/modules/wlan.ko"
+#~ WIFI_DRIVER_MODULE_NAME := wlan
+#~ WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
+
+# inherit from the proprietary version
+-include vendor/qbox/targa_utab_7_6/BoardConfigVendor.mk
