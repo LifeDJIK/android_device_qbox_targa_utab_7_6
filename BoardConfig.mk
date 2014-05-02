@@ -7,8 +7,6 @@ TARGET_ARCH_VARIANT_CPU := cortex-a5
 ARCH_ARM_HAVE_NEON := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
-USE_CAMERA_STUB := true
-
 TARGET_NO_BOOTLOADER := true
 TARGET_PROVIDES_INIT_TARGET_RC := true
 TARGET_BOARD_PLATFORM := tcc892x
@@ -50,19 +48,10 @@ BOARD_USES_HWCOMPOSER := true
 # Mass storage
 COMMON_GLOBAL_CFLAGS += -DCUSTOM_LUN_FILE=\"/sys/class/android_usb/android0/f_mass_storage/lun%d/file\"
 
-# NOT VERIFIED -- if it actually works
-#BOARD_USES_ALSA_AUDIO := true
-#BOARD_USE_TINYALSA_AUDIO := true
-#COMMON_GLOBAL_CFLAGS += -DICS_AUDIO_BLOB
-
-#~ BOARD_HAVE_GPS := true
-
-#~ BOARD_WPA_SUPPLICANT_DRIVER := WEXT
-#~ WPA_SUPPLICANT_VERSION  := VER_0_8_X
-#~ WIFI_EXT_MODULE_NAME := wlan
-#~ WIFI_EXT_MODULE_PATH := "/system/lib/modules/wlan.ko"
-#~ WIFI_DRIVER_MODULE_NAME := wlan
-#~ WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
+# WiFi
+TARGET_CUSTOM_WIFI := ../../device/qbox/targa_utab_7_6/wifi/wifi.c
+WIFI_DRIVER_MODULE_NAME := wlan
+WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
 
 # inherit from the proprietary version
 -include vendor/qbox/targa_utab_7_6/BoardConfigVendor.mk

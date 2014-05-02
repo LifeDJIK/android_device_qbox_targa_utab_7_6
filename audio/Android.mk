@@ -14,12 +14,19 @@
 
 LOCAL_PATH := $(call my-dir)
 
-# LifeDJIK audio HAL module
+# The default audio HAL module, which is a stub, that is loaded if no other
+# device specific modules are present. The exact load order can be seen in
+# libhardware/hardware.c
+#
+# The format of the name is audio.<type>.<hardware/etc>.so where the only
+# required type is 'primary'. Other possibilites are 'a2dp', 'usb', etc.
 include $(CLEAR_VARS)
-LOCAL_MODULE := audio.primary.m805_892x
+
+LOCAL_MODULE := audio.primary.tcc892x
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
 LOCAL_SRC_FILES := audio_hw.c
-LOCAL_C_INCLUDES += external/tinyalsa/include $(call include-path-for, audio-utils)
-LOCAL_SHARED_LIBRARIES := liblog libcutils libtinyalsa libaudioutils
+LOCAL_C_INCLUDES += external/tinyalsa/include
+LOCAL_SHARED_LIBRARIES := liblog libcutils libtinyalsa
 LOCAL_MODULE_TAGS := optional
+
 include $(BUILD_SHARED_LIBRARY)

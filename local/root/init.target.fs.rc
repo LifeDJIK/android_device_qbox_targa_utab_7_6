@@ -14,11 +14,32 @@ on early-init
     mkdir /mnt/usb_sdb1 0000 system system
     # for backwards compatibility
     symlink /mnt/sdcard /sdcard
-    symlink /mnt/internal /nand 
+# LifeDJIK: Set environment variables.
+    export EXTERNAL_STORAGE /mnt/sdcard
+    export EXTERNAL_SD_STORAGE /mnt/sdcard
+    export EXTERNAL_PRIMARY_STORAGE /mnt/sdcard
+
+on init
+    # tmp public mount points
+    mkdir /mnt/tmp 0777 root system
+    mount tmpfs tmpfs /mnt/tmp mode=0777,gid=1000
 
 on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
     setprop ro.crypto.keyfile.userdata /dev/block/mtdblock5
+
+on fs
+    # mount usbfs for 3G Dongle USB Driver
+    mkdir /proc/bus/usb 0700 root system
+    mount usbfs none /proc/bus/usb -o devmode=0666
+
+on post-fs-data
+    mkdir /data/misc/wifi 0770 wifi wifi
+    mkdir /data/misc/wifi/sockets 0770 wifi wifi
+    mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
+    mkdir /data/misc/dhcp 0770 dhcp dhcp
+    chown dhcp dhcp /data/misc/dhcp
+    setprop vold.post_fs_data_done 1
 
 service setup_fs /system/bin/setup_fs /dev/block/mtdblock4 /dev/block/mtdblock5
     class core

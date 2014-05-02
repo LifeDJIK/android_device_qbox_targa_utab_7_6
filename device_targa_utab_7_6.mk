@@ -23,7 +23,10 @@ PRODUCT_NAME := full_m805_892x
 PRODUCT_DEVICE := m805_892x
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += persist.sys.usb.config=mtp
-ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.allow.mock.location=0 \
+    ro.adb.secure=0 \
+    ro.debuggable=1
 
 PRODUCT_CHARACTERISTICS := tablet,sdcard
 
@@ -44,19 +47,22 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
     frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
-    frameworks/base/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
-#PRODUCT_PACKAGES += \
-#	audio.primary.m805_892x
+# WiFi Direct currently is disabled
+#~ frameworks/base/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
+
+# Audio
+PRODUCT_PACKAGES += \
+	audio.primary.tcc892x
 
 PRODUCT_PACKAGES += \
 	tinymix \
 	tinyplay \
 	tinycap
 
-#PRODUCT_PACKAGES += \
-#	fm
+PRODUCT_PACKAGES += \
+	fm
 
 $(call inherit-product, frameworks/base/build/phone-xhdpi-1024-dalvik-heap.mk)

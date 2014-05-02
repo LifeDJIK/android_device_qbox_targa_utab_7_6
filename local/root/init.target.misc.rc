@@ -8,17 +8,144 @@ on boot
     chmod 0666 /dev/ttyTCC3
     chmod 0666 /dev/gps_gpio
     setprop ro.kernel.android.gps ttyTCC3
+# LifeDJIK: Misc
+    setprop ro.ril.debug 1
+    # change permission for graphics node
+    chmod 0666 /dev/graphics/fb0
+    # change permission for fm  //jzx
+    chmod 0666 /dev/fm-transmitter
+    chmod 0666 /dev/block/ndda
+    insmod /system/lib/modules/vpu_manager.ko
+    insmod /system/lib/modules/vpu_decoder.ko
+    insmod /system/lib/modules/vpu_decoder_ext.ko
+    insmod /system/lib/modules/vpu_encoder.ko
 
-#~ on post-fs-data
-    #~ mkdir /data/misc/wifi 0770 wifi wifi
-    #~ mkdir /data/misc/wifi/sockets 0770 wifi wifi
-    #~ mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
-    #~ mkdir /data/misc/dhcp 0770 dhcp dhcp
-    #~ chown dhcp dhcp /data/misc/dhcp
-    #~ setprop vold.post_fs_data_done 1
+service hwinfo /system/bin/hwinfo
+    class main
+    user root
+    group root
+    oneshot
+
+#for telechips broadcasting service
+service tcc_dxb_service /system/bin/tcc_dxb_service
+    class main
+    user root
+    group graphics
+
+#### --- not ported --- ####
+#~ # change permission for wifitest  //mhao
+#~ chmod 4777 /system/bin/wifitest
 #~ 
-#~ service hwinfo /system/bin/hwinfo
+#~ service ril-daemon /system/bin/rild -l /system/lib/libreference-ril.so
+  #~ class main
+    #~ socket rild stream 660 root radio
+    #~ socket rild-debug stream 660 radio system
+    #~ user root
+    #~ group radio cache inet misc audio sdcard_rw log
+#~ 
+#~ 
+#~ # usbdongle : 3G Dongle USB Driver
+#~ # Author    : FYF
+#~ 
+#~ service usbdongled /system/bin/usbdongled
+  #~ class main
+	#~ user root
+	#~ group radio cache inet misc
+	#~ enabled
+	#~ oneshot
+#~ 
+#~ 
+#~ service hald /system/bin/hald
+		#~ class main
+		#~ socket hald stream 0666 system system
+		#~ user root
+		#~ group root
+#~ 
+#~ service dhcpcd_eth0 /system/bin/dhcpcd -ABKL
+    #~ disabled
+    #~ oneshot
+#~ 
+#~ service dhcpcd_bnep0 /system/bin/dhcpcd -ABKL
+    #~ disabled
+    #~ oneshot
+    #~ 
+#~ service dhcpcd_p2p /system/bin/dhcpcd -A -B -dd
     #~ class main
+    #~ disabled
+    #~ oneshot
+#~ 
+#~ service iprenew_bnep0 /system/bin/dhcpcd -n
+        #~ class main
+        #~ disabled
+        #~ oneshot
+#~ 
+#~ service wlan_tool /system/bin/wlan_tool
     #~ user root
     #~ group root
+    #~ disabled
     #~ oneshot
+#~ 
+#~ # for CSR Module
+#~ #service bccmd /system/bin/bccmd -t bcsp -d /dev/ttyTCC1 -b 115200  psload /system/key_921600.psr
+#~ #service bccmd /system/bin/bccmd -t bcsp -d /dev/ttyTCC1 -b 115200 psload /system/key_3000000.psr
+#~ #    class main
+#~ #    disabled
+#~ #    oneshot
+#~ 
+#~ # for BRCM Module
+#~ #service bcmtool /system/xbin/bcmtool /dev/ttyTCC1 -FILE=/system/BCM4325D0.hcd -ADDR=/system/sample.bdaddr -BAUD=921600
+#~ #service bcmtool /system/xbin/bcmtool /dev/ttyTCC1 -FILE=/system/BCM4325D0.hcd -ADDR=/system/sample.bdaddr -BAUD=3000000 -SCO -SETSCO=0,1,0,1,1,0,0,3,3,0 -LP
+#~ #   disabled
+#~ #   oneshot
+#~ 
+#~ #service hciattach /system/bin/hciattach -n -s 3000000 /dev/ttyTCC1 any 3000000 flow
+#~ #service hciattach /system/bin/hciattach -n -s 921600 /dev/ttyTCC1 bcsp 921600
+#~ #service hciattach /system/bin/hciattach -n -s 3000000 /dev/ttyTCC1 bcsp 3000000
+#~ #service hciattach /system/bin/hciattach -n -s 115200 /dev/ttyTCC1 rda 3000000 flow
+#~ #service hciattach /system/bin/hciattach -n -s 115200 /dev/ttyTCC1 ath3k 3000000 flow
+#~ #   user bluetooth
+#~ #   group bluetooth net_bt_admin
+#~ #    class main
+#~ #    disabled
+#~ #   oneshot
+#~ 
+#~ #compass daemon
+#~ #service akmd8975 /system/bin/akmd8975
+#~ #    user compass
+#~ #    group compass misc input
+#~ #    disabled
+#~ 
+#~ #on property:hw.sensor.ak8975=1
+#~ #    start akmd8975
+#~ 
+#~ on property:dhcp.bnep0.result=""
+    #~ stop dhcpcd
+#~ 
+#~ 
+#~ #3g dongle detect usb and switch it to modem
+#~ #service u3gmonitor /system/bin/u3gmonitor
+#~ #	class main
+#~ #	user root
+#~ #	group root
+#~ #	oneshot
+#~ 
+#~ #### -------------- qBox --------------------- ####
+#~ 
+#~ service hostapd /system/bin/hostapd_wps /data/misc/wifi/hostapd.conf
+    #~ socket hostapd_wlap0 dgram 660 root wifi
+    #~ user root
+    #~ group wifi
+    #~ oneshot
+    #~ disabled
+#~ 
+#~ service iprenew_eth0 /system/bin/dhcpcd -n
+	#~ class main
+	#~ disabled
+	#~ oneshot
+#~ 
+#~ # AR6002
+#~ #service abtfilt /system/bin/abtfilt -c -d -z -n
+#~ #   disabled
+#~ #   oneshot
+#~ 
+#~ # Atheros --- 
