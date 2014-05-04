@@ -154,21 +154,21 @@ static int adev_open(const hw_module_t* module, const char* name,
     adev->device.init_check = adev_init_check;
     adev->device.set_voice_volume = adev_set_voice_volume;
     adev->device.set_master_volume = adev_set_master_volume;
-//~ #ifndef ICS_AUDIO_BLOB
-    //~ adev->device.get_master_volume = adev_get_master_volume;
-    //~ adev->device.set_master_mute = adev_set_master_mute;
-    //~ adev->device.get_master_mute = adev_get_master_mute;
-//~ #endif
+#ifndef ICS_AUDIO_BLOB
+    adev->device.get_master_volume = adev_get_master_volume;
+    adev->device.set_master_mute = adev_set_master_mute;
+    adev->device.get_master_mute = adev_get_master_mute;
+#endif
     adev->device.set_mode = adev_set_mode;
     adev->device.set_mic_mute = adev_set_mic_mute;
     adev->device.get_mic_mute = adev_get_mic_mute;
     adev->device.set_parameters = adev_set_parameters;
     adev->device.get_parameters = adev_get_parameters;
-//~ #ifndef ICS_AUDIO_BLOB
-    //~ adev->device.get_input_buffer_size = adev_get_input_buffer_size;
-    //~ adev->device.open_output_stream = adev_open_output_stream;
-    //~ adev->device.open_input_stream = adev_open_input_stream;
-//~ #endif
+#ifndef ICS_AUDIO_BLOB
+    adev->device.get_input_buffer_size = adev_get_input_buffer_size;
+    adev->device.open_output_stream = adev_open_output_stream;
+    adev->device.open_input_stream = adev_open_input_stream;
+#endif
     adev->device.close_output_stream = adev_close_output_stream;
     adev->device.close_input_stream = adev_close_input_stream;
     adev->device.dump = adev_dump;
@@ -322,9 +322,9 @@ static int adev_open_output_stream(struct audio_hw_device *dev,
     out->stream.set_volume = out_set_volume;
     out->stream.write = out_write;
     out->stream.get_render_position = out_get_render_position;
-//~ #ifndef ICS_AUDIO_BLOB
-    //~ out->stream.get_next_write_timestamp = out_get_next_write_timestamp;
-//~ #endif
+#ifndef ICS_AUDIO_BLOB
+    out->stream.get_next_write_timestamp = out_get_next_write_timestamp;
+#endif
 	
     // Initialize & check
     

@@ -25,8 +25,4 @@
      value at runtime for some things) -->
     <bool name="config_recents_interface_for_tablets">true</bool>
 
-    <!-- Component to be used as the system bar service.  Must implement the IStatusBar
-     interface.  This name is in the ComponentName flattened format (package/class)  -->
-    <string name="config_systemBarComponent" translatable="false">com.android.systemui.statusbar.tablet.TabletStatusBar</string>
-
 </resources>

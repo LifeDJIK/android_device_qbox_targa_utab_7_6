@@ -1,0 +1,17 @@
+# Android fstab file.
+#<src>                                                  <mnt_point>         <type>    <mnt_flags and options>                              <fs_mgr_flags>
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+boot                                                    /boot               mtd       defaults                                             recoveryonly
+system                                                  /system             yaffs2    defaults                                             wait
+splash                                                  /splash             mtd       defaults                                             recoveryonly
+cache                                                   /cache              yaffs2    defaults                                             wait,check
+userdata                                                /data               yaffs2    defaults                                             wait,check
+recovery                                                /recovery           mtd       defaults                                             recoveryonly
+misc                                                    /misc               mtd       defaults                                             recoveryonly
+/devices/platform/tcc-sdhc                              auto                auto      defaults                                             voldmanaged=sdcard:auto
+/devices/virtual/block/ndda                             auto                auto      defaults                                             voldmanaged=internal:auto
+# /dev/block/mmcblk0p1 /sdcard auto defaults recoveryonly
+# /dev/block/ndda1 /nand auto defaults recoveryonly
+# dev_mount usb_sda /mnt/usb_sda1 auto /devices/platform/dwc_otg /devices/platform/tcc-ohci /devices/platform/tcc-ehci
+# dev_mount usb_sdb /mnt/usb_sdb1 auto /devices/platform/dwc_otg /devices/platform/tcc-ohci /devices/platform/tcc-ehci

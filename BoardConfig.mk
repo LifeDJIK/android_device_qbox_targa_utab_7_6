@@ -4,6 +4,7 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_ARCH_VARIANT_CPU := cortex-a5
+TARGET_CPU_VARIANT := cortex-a5
 ARCH_ARM_HAVE_NEON := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
@@ -33,6 +34,9 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x12c00000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x3fe00000
 BOARD_FLASH_BLOCK_SIZE := 1048576
 
+TARGET_RECOVERY_FSTAB := device/qbox/targa_utab_7_6/local/root/fstab.m805_892x
+RECOVERY_FSTAB_VERSION := 2
+
 TARGET_PREBUILT_KERNEL := device/qbox/targa_utab_7_6/kernel
 #TARGET_KERNEL_SOURCE := kernel/qbox/targa_utab_7_6
 #TARGET_KERNEL_CONFIG := targa_utab_7_6_defconfig
@@ -41,6 +45,7 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 
 BOARD_EGL_CFG := vendor/qbox/targa_utab_7_6/system/lib/egl/egl.cfg
 BOARD_EGL_NEEDS_LEGACY_FB := true
+COMMON_GLOBAL_CFLAGS += -DEGL_NEEDS_FNW
 USE_OPENGL_RENDERER := true
 
 BOARD_USES_HWCOMPOSER := true
@@ -50,6 +55,8 @@ COMMON_GLOBAL_CFLAGS += -DCUSTOM_LUN_FILE=\"/sys/class/android_usb/android0/f_ma
 
 # WiFi
 TARGET_CUSTOM_WIFI := ../../device/qbox/targa_utab_7_6/wifi/wifi.c
+#~ BOARD_WPA_SUPPLICANT_DRIVER := WEXT
+#~ WPA_SUPPLICANT_VERSION := VER_0_8_X
 WIFI_DRIVER_MODULE_NAME := wlan
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
 
